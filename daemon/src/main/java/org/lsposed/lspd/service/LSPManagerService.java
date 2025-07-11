@@ -434,7 +434,7 @@ public class LSPManagerService extends ILSPManagerService.Stub {
 
     @Override
     public boolean dex2oatFlagsLoaded() {
-        return SystemProperties.get("dalvik.vm.dex2oat-flags").contains("--inline-max-code-units=0");
+        return true;
     }
 
     @Override

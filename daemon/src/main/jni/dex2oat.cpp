@@ -65,15 +65,12 @@ extern "C" JNIEXPORT void JNICALL Java_org_lsposed_lspd_service_Dex2OatService_d
                 mount(dex2oat64, d64p, nullptr, MS_BIND, nullptr);
                 mount(nullptr, d64p, nullptr, MS_BIND | MS_REMOUNT | MS_RDONLY, nullptr);
             }
-            execlp("resetprop", "resetprop", "--delete", "dalvik.vm.dex2oat-flags", nullptr);
         } else {
             LOGI("Disable dex2oat wrapper");
             if (r32) umount(r32p);
             if (d32) umount(d32p);
             if (r64) umount(r64p);
             if (d64) umount(d64p);
-            execlp("resetprop", "resetprop", "dalvik.vm.dex2oat-flags", "--inline-max-code-units=0",
-                   nullptr);
         }
 
         PLOGE("Failed to resetprop");
