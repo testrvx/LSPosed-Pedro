@@ -18,10 +18,10 @@ DCL_HOOK_FUNC(size_t, _ZN3art15CompilerOptionsC1Ev, void *header) {
     size_t size = _ZN3art15CompilerOptionsC1Ev(header);
 
     for (int i = 0LL; i < 80 ; i += sizeof(void *)) {
-        if (header + i == -1LL) {
+        if ((uintptr_t)header + i == -1LL) {
             LOGI("Found a null pointer in CompilerOptions at offset %d", i);
 
-            (header + i) = 0LL;
+            (uintptr_t)((uintptr_t)header + i) = 0LL;
 
             return size;
         }
